@@ -25,8 +25,8 @@
 #include <rdma/fi_rma.h>
 #include <rdma/fi_errno.h>
 
-static uint8_t *local_buf;
-static uint8_t *remote_buf;
+static char *local_buf;
+static char *remote_buf;
 static struct fi_info *fi, *hints;
 static struct fid_fabric *fabric;
 static struct fi_eq_attr eq_attr;
@@ -152,15 +152,15 @@ int init_endpoint() {
     // Could create multiple endpoints, especially if there are multiple NICs available.
 
     // malloc buffers
-    local_buf = (uint8_t*) malloc(max_msg_size);
-    remote_buf = (uint8_t*) malloc(max_msg_size);
+    local_buf = (char*) malloc(max_msg_size);
+    remote_buf = (char*) malloc(max_msg_size);
     if (!local_buf || ! remote_buf) {
         std::cerr << "malloc failure" << std::endl;
         ret = -1;
         goto exit;
     }
-    memset(local_buf, 0, max_msg_size);
-    memset(remote_buf, 0, max_msg_size);
+    memset(local_buf, '\0', max_msg_size);
+    memset(remote_buf, '\0', max_msg_size);
 
 
 exit:
@@ -384,7 +384,8 @@ int main(int argc, char **argv) {
 
     if (dst_addr) {
         /* CLIENT */
-        std::cout << "Client: Sending ping pong message" << std::endl;
+        memset(local_buf, 'a', 1);
+        std::cout << "Client: Sending ping pong message - " << local_buf << std::endl;
         if(err = fi_send(ep, local_buf, max_msg_size, NULL, remote_addr, NULL)) goto exit;
         std::cout << "Client: Waiting for Tx completion" << std::endl;
         if (err = wait_for_completion(tx_cq)) goto exit;
@@ -392,13 +393,16 @@ int main(int argc, char **argv) {
         if (err = wait_for_completion(rx_cq)) goto exit;
         std::cout << "Client: Receiving message" << std::endl;
         if (err = fi_recv(ep, remote_buf, max_msg_size, 0, 0, NULL)) goto exit;
+        std::cout << "Client: Received - " << remote_buf << std::endl;
     } else {
         /* SERVER */
         std::cout << "Server: Waiting for Rx completion" << std::endl;
         if (err = wait_for_completion(rx_cq)) goto exit;
         std::cout << "Server: Receiving message" << std::endl;
         if (err = fi_recv(ep, remote_buf, max_msg_size, 0, 0, NULL)) goto exit;
-        std::cout << "Server: Sending message" << std::endl;
+        std::cout << "Server: Received - " << remote_buf << std::endl;
+        memset(local_buf, 'b', 1);
+        std::cout << "Server: Sending message - " << local_buf << std::endl;
         if (err = fi_send(ep, local_buf, max_msg_size, NULL, remote_addr, NULL)) goto exit;
         std::cout << "Server: Waiting for Tx completion" << std::endl;
         if (err = wait_for_completion(tx_cq)) goto exit;
