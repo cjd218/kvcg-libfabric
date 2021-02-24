@@ -1,0 +1,140 @@
+\hypertarget{classServer}{\section{Server Class Reference}
+\label{classServer}\index{Server@{Server}}
+}
+Inheritance diagram for Server\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classServer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classServer_ae94d08657f48a3b51b411463f1137375}{initialize} ()
+\item 
+std\-::vector$<$ std\-::pair$<$ int, \\*
+int $>$ $>$ \hyperlink{classServer_ad303d839086eee11137e6fc4a4bb95ab}{get\-Primary\-Keys} ()
+\item 
+bool \hyperlink{classServer_a395d7cb7194064c961710663926e4a3d}{add\-Key\-Range} (std\-::pair$<$ int, int $>$ key\-Range)
+\item 
+bool \hyperlink{classServer_a2f865f52beecb3be03eda85b4dc64e3e}{add\-Primary\-Server} (\hyperlink{classServer}{Server} $\ast$s)
+\item 
+bool \hyperlink{classServer_ab272570a3b1d8eb7f9037c9e7b4e5f2a}{add\-Backup\-Server} (\hyperlink{classServer}{Server} $\ast$s)
+\item 
+bool \hyperlink{classServer_a9bd7a3b2b12f2f5bddd68eb245111d02}{is\-Primary} (int key)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classServer_ab272570a3b1d8eb7f9037c9e7b4e5f2a}{\index{Server@{Server}!add\-Backup\-Server@{add\-Backup\-Server}}
+\index{add\-Backup\-Server@{add\-Backup\-Server}!Server@{Server}}
+\subsubsection[{add\-Backup\-Server}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\-::add\-Backup\-Server (
+\begin{DoxyParamCaption}
+\item[{{\bf Server} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{classServer_ab272570a3b1d8eb7f9037c9e7b4e5f2a}
+Add server who is backing this one up
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & -\/ \hyperlink{classServer}{Server} to add to backup server list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if added successfully, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classServer_a395d7cb7194064c961710663926e4a3d}{\index{Server@{Server}!add\-Key\-Range@{add\-Key\-Range}}
+\index{add\-Key\-Range@{add\-Key\-Range}!Server@{Server}}
+\subsubsection[{add\-Key\-Range}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\-::add\-Key\-Range (
+\begin{DoxyParamCaption}
+\item[{std\-::pair$<$ int, int $>$}]{key\-Range}
+\end{DoxyParamCaption}
+)}}\label{classServer_a395d7cb7194064c961710663926e4a3d}
+Add key range to primary list
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\-Range} & -\/ std\-::pair$<$int, int$>$ of min and max key\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if added successfully, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classServer_a2f865f52beecb3be03eda85b4dc64e3e}{\index{Server@{Server}!add\-Primary\-Server@{add\-Primary\-Server}}
+\index{add\-Primary\-Server@{add\-Primary\-Server}!Server@{Server}}
+\subsubsection[{add\-Primary\-Server}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\-::add\-Primary\-Server (
+\begin{DoxyParamCaption}
+\item[{{\bf Server} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{classServer_a2f865f52beecb3be03eda85b4dc64e3e}
+Add server who this one is backing up
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & -\/ \hyperlink{classServer}{Server} to add to primary server list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if added successfully, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classServer_ad303d839086eee11137e6fc4a4bb95ab}{\index{Server@{Server}!get\-Primary\-Keys@{get\-Primary\-Keys}}
+\index{get\-Primary\-Keys@{get\-Primary\-Keys}!Server@{Server}}
+\subsubsection[{get\-Primary\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$std\-::pair$<$int, int$>$ $>$ Server\-::get\-Primary\-Keys (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classServer_ad303d839086eee11137e6fc4a4bb95ab}
+Get vector of primary key ranges
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of min/max key range pairs 
+\end{DoxyReturn}
+\hypertarget{classServer_ae94d08657f48a3b51b411463f1137375}{\index{Server@{Server}!initialize@{initialize}}
+\index{initialize@{initialize}!Server@{Server}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}int Server\-::initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classServer_ae94d08657f48a3b51b411463f1137375}
+Initialize server
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNode}{Node}.
+
+\hypertarget{classServer_a9bd7a3b2b12f2f5bddd68eb245111d02}{\index{Server@{Server}!is\-Primary@{is\-Primary}}
+\index{is\-Primary@{is\-Primary}!Server@{Server}}
+\subsubsection[{is\-Primary}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\-::is\-Primary (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)}}\label{classServer_a9bd7a3b2b12f2f5bddd68eb245111d02}
+Check if server is running as primary for a given key
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if primary, false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/root/cjdambro/grad-\/school/\-C\-S\-E498/gits/fault-\/tolerance/include/\hyperlink{fault__tolerance_8h}{fault\-\_\-tolerance.\-h}\end{DoxyCompactItemize}
